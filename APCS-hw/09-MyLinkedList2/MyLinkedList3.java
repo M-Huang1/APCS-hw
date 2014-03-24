@@ -1,18 +1,33 @@
-public class MyLinkedList{
-    private node head;
+public class MyLinkedList3{
+    private node head,tail;
     private int length = 0;
-    public MyLinkedList(){
+    public MyLinkedList3(){
 	head = null;
+	tail = null;
     }
+    public void resetTail(){
+	node temp = head;
+	while(temp.getNext() != null){
+	    temp = temp.getNext();
+	}
+	tail = temp;
+    }
+    public void addTail(String d){
+	tail.setNext(new node(d));
+	tail = tail.getNext();
+	length++;
+    }
+    public String getTail(){
+	return tail.getData();
+    }
+	    
     public void add(String d){
 	node tmp = new node(d);
 	//head = tmp;
 	tmp.setNext(head);
 	head =tmp;
 	length ++;
-	
-
-
+	resetTail();
     }
     public void add(int i,String s){
 	if(i>length+1){
@@ -35,7 +50,7 @@ public class MyLinkedList{
 	head = new node(nodes[length-1].getData());
 	for (int xx=length-2;xx>=0;xx--){
 	    add(nodes[xx].getData());}
-	
+	resetTail();
     }
     
 	
@@ -68,12 +83,14 @@ public class MyLinkedList{
 	    datas[x]= head.getData();
 	    head = head.getNext();
 	    }
+	    
 	}
 	
 	head = new node(datas[length-1]);
 	for (int xx=length-2;xx>=0;xx--){
 	    add(datas[xx]);
 	}
+	
 	return ret;
 	
 	
@@ -106,6 +123,7 @@ public class MyLinkedList{
 	for (int xx=length-2;xx>=0;xx--){
 	    add(nodes[xx].getData());
 	}
+	resetTail();
 	return ret;
     }
     public int find(String s){
