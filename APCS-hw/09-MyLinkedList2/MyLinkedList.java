@@ -2,17 +2,24 @@ public class MyLinkedList{
     private node head;
     private int length = 0;
     public MyLinkedList(){
-	head = null;
+	head = new node("0");
     }
-    
+     public void addDummy(){
+	node d = new node("0");
+	d.setNext(head);
+	head = d;
+     }
+    public void removeDummy(){
+	head = head.getNext();
+    }
     public void add(String d){
-
+	removeDummy();
 	node tmp = new node(d);
 	//head = tmp;
 	tmp.setNext(head);
 	head =tmp;
 	length ++;
-	
+	addDummy();
 
     }
     public void add(int i,String s){
@@ -20,7 +27,7 @@ public class MyLinkedList{
 	if(i>length+1){
 	    return;
 	}
-	
+	removeDummy();
 	length ++;
 	node add = new node(s);
 	node[] nodes = new node[length];
@@ -38,13 +45,14 @@ public class MyLinkedList{
 	head = new node(nodes[length-1].getData());
 	for (int xx=length-2;xx>=0;xx--){
 	    add(nodes[xx].getData());}
-	
+	addDummy();
     }
     
 	
 	
 	    
     public String get(int i){
+	removeDummy();
 	node temp = head;
 	for (int x =0;x <= i;x ++){
 	    if (x == i)
@@ -53,10 +61,11 @@ public class MyLinkedList{
 		temp = temp.getNext();
 	    }
 	}
+	addDummy();
 	return "Out of Bounds";
     }
     public String set(int i,String s){
-	
+	removeDummy();
 	if(i>length+1){
 	    return "Out of Bounds";
 	}
@@ -78,14 +87,14 @@ public class MyLinkedList{
 	for (int xx=length-2;xx>=0;xx--){
 	    add(datas[xx]);
 	}
-	
+	addDummy();
 	return ret;
 	
 	
 	
     }
     public String remove(int i){
-	
+	removeDummy();
 	if(i>length+1){
 	    return "Out of Bounds";
 	}
@@ -112,13 +121,15 @@ public class MyLinkedList{
 	for (int xx=length-2;xx>=0;xx--){
 	    add(nodes[xx].getData());
 	}
-	
+	addDummy();
 	return ret;
     }
     public int find(String s){
+	removeDummy();
 	node temp = head;
 	for (int xx =0;xx<length;xx++){
 	    if (temp.getData().equals(s)){
+		addDummy();
 		return xx;
 	    }
 	    else{
@@ -126,6 +137,7 @@ public class MyLinkedList{
 	    }
 	}
 	System.out.println("Cannot be found");
+	addDummy();
 	return -1;
     }
     public int length(){
