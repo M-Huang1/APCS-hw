@@ -20,5 +20,4 @@ public class node {
     public String toString(){
 	return data;
     }
-    
-}
+  
