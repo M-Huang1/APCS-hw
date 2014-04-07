@@ -2,6 +2,14 @@ public class MyStackArray{
     private String[] stack = new String[10];
     private String top;
     private int numElts;
+    public void grow(){
+	if(numElts >= stack.length){
+	    String[] stack1 = new String[numElts+10];
+	    for(int x =0;x<numElts;x++){
+		stack1[x]= stack[x];
+	    }
+	    stack = stack1;
+	}
     public MyStackArray(){
 	top = "";
 	numElts=0;
@@ -10,6 +18,7 @@ public class MyStackArray{
 	stack[numElts]= s;
 	top = s;
 	numElts++;
+	grow();
     }
     public String pop(){
 	String ss;
