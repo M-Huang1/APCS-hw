@@ -33,7 +33,7 @@ public class MyStackArray{
 	}
     }
     public String peek(){
-	return stack[numElts];
+	return stack[numElts-1];
     }
     public boolean isEmpty(){
 	if (numElts <=0){
